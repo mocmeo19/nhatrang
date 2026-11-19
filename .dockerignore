@@ -1,0 +1,14 @@
+node_modules
+.next
+.git
+.idea
+*.iml
+.playwright-mcp
+generated_imgs
+tests
+docs
+vitest.config.ts
+Dockerfile
+.dockerignore
+.env*
+*.tsbuildinfo

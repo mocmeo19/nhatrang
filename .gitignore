@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+.env*
+.idea
+*.iml
+generated_imgs
+next-env.d.ts
+*.tsbuildinfo
+.playwright-mcp

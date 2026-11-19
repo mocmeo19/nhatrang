@@ -1,0 +1,114 @@
+@import "tailwindcss";
+@import "../shared/styles/fonts.css";
+
+@theme static {
+  --color-ocean-50: #edf5f2;
+  --color-ocean-100: #d2e8e1;
+  --color-ocean-300: #89c7bc;
+  --color-ocean-400: #54b5a7;
+  --color-ocean-500: #218b80;
+  --color-ocean-600: #16766d;
+  --color-ocean-800: #15544e;
+  --color-ocean-950: #103c38;
+  --color-sand-50: #f8f7f2;
+  --color-sand-100: #f0eee4;
+  --color-sand-200: #e5dfcc;
+  --color-sun-400: #e8e99c;
+  --color-sun-500: #d7d978;
+  --color-coral-400: #e9a783;
+  --color-coral-500: #a95535;
+  --color-palm-500: #4c8467;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Be Vietnam Pro", system-ui, sans-serif;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-wave: wave 12s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+  @keyframes wave {
+    to { transform: translateX(-50%); }
+  }
+}
+
+html {
+  background: var(--color-sand-50);
+  scroll-behavior: auto;
+}
+
+body {
+  color: var(--color-ocean-950);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+button, a, input, select, summary { -webkit-tap-highlight-color: transparent; }
+button, summary { cursor: pointer; }
+a, button, input, select, summary { touch-action: manipulation; }
+:focus-visible { outline: 3px solid var(--color-ocean-400); outline-offset: 5px; }
+[id] { scroll-margin-top: 110px; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.eyebrow::before { content: ""; width: 1.7rem; height: 1px; background: currentColor; }
+@layer components {
+.button-primary, .button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  min-height: 3.25rem;
+  border-radius: 999px;
+  padding: 0.85rem 1.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: background 250ms, color 250ms, transform 250ms, box-shadow 250ms;
+}
+.button-primary { background: var(--color-sun-400); color: var(--color-ocean-950); }
+.button-primary:hover { background: #f1f2bc; transform: translateY(-3px); box-shadow: 0 8px 24px #103c3818; }
+.button-secondary { border: 1px solid currentColor; }
+.button-secondary:hover { background: #ffffff18; transform: translateY(-3px); }
+}
+.image-zoom { transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1); }
+.group:hover .image-zoom { transform: scale(1.055); }
+.coastal-grain { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23000' opacity='.035' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E"); }
+
+.hero-photo { animation: arrive 1.8s cubic-bezier(0.2, 0.65, 0.3, 1) both; }
+@keyframes arrive { from { transform: scale(1.08); } to { transform: scale(1); } }
+@keyframes compass-turn { to { transform: rotate(360deg); } }
+.compass-turn { animation: compass-turn 75s linear infinite; }
+
+.skip-link { position: fixed; top: 1rem; left: 1rem; z-index: 100; transform: translateY(-200%); background: white; padding: 1rem; border-radius: 1rem; }
+.skip-link:focus { transform: translateY(0); }
+
+::selection {
+  background: var(--color-sun-400);
+  color: var(--color-ocean-950);
+}
+
+.text-gradient-sun {
+  background: linear-gradient(100deg, var(--color-sun-400), var(--color-coral-400));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
